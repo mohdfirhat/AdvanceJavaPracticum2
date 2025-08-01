@@ -1,3 +1,5 @@
+package Receiver;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -34,4 +36,20 @@ public class Receiver {
     public ArrayList<String> getList() {
         return list;
     }
+
+    public boolean add(String entry){
+        list.add(entry);
+        return true;
+    }
+
+    public boolean delete(int index){
+        list.remove(index);
+        return true;
+
+    }
+
+
+
+
+
 }
