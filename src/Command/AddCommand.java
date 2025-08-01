@@ -7,6 +7,7 @@ public class AddCommand implements Command {
     private int index;
 
     public AddCommand(Receiver receiver, String data1, String data2, String data3) {
+        //add regex condition here for email
         this.receiver = receiver;
         this.firstName = data1;
         this.lastName = data2;
@@ -21,5 +22,10 @@ public class AddCommand implements Command {
         //getItems() is geter items for total # of items in receiver
         index = receiver.getList().size() - 1;
         System.out.println("add");
+    }
+
+    @Override
+    public void undo() {
+        receiver.list.remove(receiver.list.size() - 1);
     }
 }

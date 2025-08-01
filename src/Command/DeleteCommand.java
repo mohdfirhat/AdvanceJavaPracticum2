@@ -8,6 +8,7 @@ public class DeleteCommand implements Command {
     private final int index;
     private String deletedItem;
 
+
     public DeleteCommand(Receiver receiver, int index) {
         this.receiver = receiver;
         this.index = index;
@@ -24,5 +25,10 @@ public class DeleteCommand implements Command {
             System.out.println("Invalid index.");
         }
 
+    }
+
+    @Override
+    public void undo() {
+        receiver.list.add(index, deletedItem);
     }
 }

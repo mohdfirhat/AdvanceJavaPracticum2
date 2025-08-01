@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Receiver {
 
     private static final String FILE_PATH = "./src/dataStore.txt";
-    private final ArrayList<String> list = new ArrayList<>();
+    public final ArrayList<String> list = new ArrayList<>();
 
     public Receiver() {
     }
@@ -46,6 +46,14 @@ public class Receiver {
         list.remove(index);
         return true;
 
+    }
+
+    public boolean list(){
+        for (int i = 0; i < list.size(); i++) {
+            int count = i+1;
+            System.out.println(count+". "+list.get(i));
+        }
+        return true;
     }
 
 
