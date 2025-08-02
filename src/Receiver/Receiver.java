@@ -1,9 +1,6 @@
 package Receiver;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class Receiver {
@@ -28,9 +25,21 @@ public class Receiver {
         } catch (IOException fnf) {
             //TODO: May need to handle IOException and FileNotFoundException individually
             System.err.println("Unable to read file.File not found.");
-            return;
+            fnf.printStackTrace();
         }
 
+    }
+
+    public void storeToFile() {
+        try (FileWriter fw = new FileWriter(FILE_PATH);
+             BufferedWriter bw = new BufferedWriter(fw)) {
+            for (String line : list) {
+                bw.write(line);
+                bw.newLine();
+            }
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
     }
 
     public ArrayList<String> getList() {
@@ -55,9 +64,5 @@ public class Receiver {
         }
         return true;
     }
-
-
-
-
 
 }
