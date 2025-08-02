@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 package Command;
 import Receiver.Receiver;
 
@@ -29,19 +28,3 @@ public class UpdateCommand implements Command {
     @Override
     public void undo() {}
 }
-=======
-package Command;
-
-public class UpdateCommand implements Command, Undoable {
-    @Override
-    public void execute() {
-
-    }
-
-    @Override
-    public void undo() {
-
-    }
-
-}
->>>>>>> Stashed changes

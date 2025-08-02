@@ -1,4 +1,4 @@
-import Reciever.Receiver;
+import Receiver.Receiver;
 
 import java.util.*;
 

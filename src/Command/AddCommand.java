@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 package Command;
 import Receiver.Receiver;
 
@@ -30,19 +29,3 @@ public class AddCommand implements Command {
         receiver.list.remove(receiver.list.size() - 1);
     }
 }
-=======
-package Command;
-
-public class AddCommand implements Command , Undoable {
-
-    @Override
-    public void execute() {
-
-    }
-
-    @Override
-    public void undo() {
-
-    }
-}
->>>>>>> Stashed changes

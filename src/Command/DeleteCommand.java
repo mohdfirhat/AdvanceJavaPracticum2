@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 package Command;
 import Receiver.Receiver;
 
@@ -33,18 +32,3 @@ public class DeleteCommand implements Command {
         receiver.list.add(index, deletedItem);
     }
 }
-=======
-package Command;
-
-public class DeleteCommand implements Command, Undoable {
-    @Override
-    public void execute() {
-
-    }
-
-    @Override
-    public void undo() {
-
-    }
-}
->>>>>>> Stashed changes
