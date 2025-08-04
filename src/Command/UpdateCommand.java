@@ -15,6 +15,48 @@ public class UpdateCommand implements Command, Undoable {
     private String originalEntry;
     private List<String> items;
 
+    public UpdateCommand(Receiver receiver, int index, String data1) {
+        items = receiver.list;
+        if (index < 0 || index >= items.size()) {
+            throw new  InvalidInputException("invalid index");
+        }
+
+        this.receiver = receiver;
+        this.index = index-1;
+
+        this.originalEntry = receiver.list.get(index);
+        String[] parts = originalEntry.split(" ", 3);
+        String origFirstName = parts.length > 0 ? parts[0] : "";
+        String origLastName = parts.length > 1 ? parts[1] : "";
+        String origEmail = parts.length > 2 ? parts[2] : "";
+
+        this.firstName = data1;
+        this.lastName = origLastName;
+        this.email = origEmail;
+
+    }
+
+    public UpdateCommand(Receiver receiver, int index, String data1, String data2) {
+        items = receiver.list;
+        if (index < 0 || index >= items.size()) {
+            throw new  InvalidInputException("invalid index");
+        }
+
+        this.receiver = receiver;
+        this.index = index-1;
+
+        this.originalEntry = receiver.list.get(index);
+        String[] parts = originalEntry.split(" ", 3);
+        String origFirstName = parts.length > 0 ? parts[0] : "";
+        String origLastName = parts.length > 1 ? parts[1] : "";
+        String origEmail = parts.length > 2 ? parts[2] : "";
+
+        this.firstName = data1;
+        this.lastName = data2;
+        this.email = origEmail;
+
+    }
+
     public UpdateCommand(Receiver receiver, int index, String data1, String data2, String data3) {
         items = receiver.list;
         if (index < 0 || index >= items.size()) {
@@ -28,14 +70,10 @@ public class UpdateCommand implements Command, Undoable {
         this.index = index-1;
 
         this.originalEntry = receiver.list.get(index);
-        String[] parts = originalEntry.split(" ", 3);
-        String origFirstName = parts.length > 0 ? parts[0] : "";
-        String origLastName = parts.length > 1 ? parts[1] : "";
-        String origEmail = parts.length > 2 ? parts[2] : "";
 
-        this.firstName = !data1.isEmpty() ? data1 : origFirstName;
-        this.lastName = !data2.isEmpty() ? data2 : origLastName;
-        this.email = !data3.isEmpty() ? data3 : origEmail;
+        this.firstName = data1;
+        this.lastName = data2;
+        this.email = data3;
 
     }
 
