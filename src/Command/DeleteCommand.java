@@ -3,7 +3,7 @@ import Receiver.Receiver;
 
 import java.util.List;
 
-public class DeleteCommand implements Command {
+public class DeleteCommand implements Command , Undoable {
     private final Receiver receiver;
     private final int index;
     private String deletedItem;

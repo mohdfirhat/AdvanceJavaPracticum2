@@ -15,6 +15,7 @@ public class Invoker {
         //no commands,do nothing
         // TODO:May need to remove as base logic will do nothing
         if (cmdToExecute.length == 0) {
+            System.out.println("No Command to execute");
             return;
         }
 

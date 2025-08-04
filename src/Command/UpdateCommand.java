@@ -1,7 +1,7 @@
 package Command;
 import Receiver.Receiver;
 
-public class UpdateCommand implements Command {
+public class UpdateCommand implements Command, Undoable {
     private Receiver receiver;
     private int index;
     private String firstName;
