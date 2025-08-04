@@ -12,8 +12,8 @@ public class ListCommand implements Command{
 
     @Override
     public void execute(Stack<Command> history) {
-        receiver.list();
         System.out.println("List");
+        receiver.list();
     }
 
     @Override

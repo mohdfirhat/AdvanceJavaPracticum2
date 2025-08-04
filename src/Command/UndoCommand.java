@@ -11,6 +11,7 @@ public class UndoCommand implements Command {
     @Override
     public void execute(Stack<Command> history) {
         if (!history.isEmpty()) {
+            System.out.println("Undo");
             Command cmd = history.pop();
             cmd.undo();
         } else {

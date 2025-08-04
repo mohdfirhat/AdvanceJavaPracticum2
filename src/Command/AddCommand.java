@@ -17,22 +17,24 @@ public class AddCommand implements Command , Undoable {
         data3 = data3.trim();
 
         // Validate data
-        try {
+//        try {
             if (data1.isBlank() || data2.isBlank() || data3.isBlank()) {
-                throw new InvalidInputException("All three arguments are required to add.");
+//                throw new InvalidInputException("All three arguments are required to add.");
+                System.out.println("All three arguments are required to add.");
             }
             if (isInvalidEmail(data3)) {
-                throw new InvalidInputException("Invalid email address.");
+//                throw new InvalidInputException("Invalid email address.");
+                System.out.println("Invalid email address.");
             }
-        } catch (InvalidInputException e) {
-            System.out.println(e.getMessage());
-        }
 
-        //set variables
-        this.receiver = receiver;
-        this.firstName = data1;
-        this.lastName = data2;
-        this.email = data3;
+            //set variables
+            this.receiver = receiver;
+            this.firstName = data1;
+            this.lastName = data2;
+            this.email = data3;
+//        } catch (InvalidInputException e) {
+//            System.out.println(e.getMessage());
+//        }
     }
 
     @Override
