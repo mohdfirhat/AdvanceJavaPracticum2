@@ -11,7 +11,7 @@ public class DeleteCommand implements Command , Undoable {
 
     public DeleteCommand(Receiver receiver, int index) {
         this.receiver = receiver;
-        this.index = index;
+        this.index = index-1;
     }
 
     @Override
