@@ -26,9 +26,8 @@ public class UpdateCommand implements Command, Undoable {
 
         this.originalEntry = receiver.list.get(index);
         String[] parts = originalEntry.split(" ", 3);
-        String origFirstName = parts.length > 0 ? parts[0] : "";
-        String origLastName = parts.length > 1 ? parts[1] : "";
-        String origEmail = parts.length > 2 ? parts[2] : "";
+        String origLastName = parts[1];
+        String origEmail = parts[2];
 
         this.firstName = data1;
         this.lastName = origLastName;
@@ -47,9 +46,7 @@ public class UpdateCommand implements Command, Undoable {
 
         this.originalEntry = receiver.list.get(index);
         String[] parts = originalEntry.split(" ", 3);
-        String origFirstName = parts.length > 0 ? parts[0] : "";
-        String origLastName = parts.length > 1 ? parts[1] : "";
-        String origEmail = parts.length > 2 ? parts[2] : "";
+        String origEmail = parts[2];
 
         this.firstName = data1;
         this.lastName = data2;
