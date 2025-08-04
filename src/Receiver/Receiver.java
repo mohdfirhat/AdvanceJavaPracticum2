@@ -65,4 +65,8 @@ public class Receiver {
         return true;
     }
 
+    public boolean update(int index, String entry){
+        list.set(index, entry);
+        return true;
+    }
 }
