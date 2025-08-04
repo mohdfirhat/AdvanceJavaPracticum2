@@ -3,6 +3,7 @@ import Receiver.Receiver;
 import Exception.InvalidInputException;
 
 import java.util.List;
+import java.util.Stack;
 
 public class DeleteCommand implements Command , Undoable {
     private final Receiver receiver;
@@ -20,9 +21,10 @@ public class DeleteCommand implements Command , Undoable {
     }
 
     @Override
-    public void execute() {
+    public void execute(Stack<Command> history) {
         deletedItem = items.get(index);
         receiver.delete(index);
+        history.push(this);
         System.out.println("Delete");
     }
 

@@ -1,6 +1,8 @@
 package Command;
 import Receiver.Receiver;
 import Exception.InvalidInputException;
+
+import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -34,11 +36,12 @@ public class AddCommand implements Command , Undoable {
     }
 
     @Override
-    public void execute() {
+    public void execute(Stack<Command> history) {
         String fullEntry = String.format("%s %s %s", firstName, lastName,
                 email);
         //add() is item method in receiver to append new item to list
         receiver.add(fullEntry);
+        history.push(this);
         System.out.println("Add");
     }
 

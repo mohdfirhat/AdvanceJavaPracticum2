@@ -1,12 +1,16 @@
 package Receiver;
 
+import Command.Command;
+
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class Receiver {
 
     private static final String FILE_PATH = "./src/dataStore.txt";
     public final ArrayList<String> list = new ArrayList<>();
+    public Stack<Command> history = new Stack<>();
 
     public Receiver() {
     }

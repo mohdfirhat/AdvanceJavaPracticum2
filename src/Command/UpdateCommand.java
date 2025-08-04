@@ -3,6 +3,7 @@ import Receiver.Receiver;
 import Exception.InvalidInputException;
 
 import java.util.List;
+import java.util.Stack;
 
 
 public class UpdateCommand implements Command, Undoable {
@@ -39,9 +40,10 @@ public class UpdateCommand implements Command, Undoable {
     }
 
     @Override
-    public void execute() {
+    public void execute(Stack<Command> history) {
         String updatedEntry = firstName + " " + lastName + " " + email;
         receiver.update(index, updatedEntry);
+        history.push(this);
         System.out.println("Update");
     }
 

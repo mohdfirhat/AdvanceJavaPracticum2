@@ -1,15 +1,15 @@
 package Command;
 
 import java.util.Stack;
+import Command.Undoable;
 
 public class UndoCommand implements Command {
-    private Stack<Command> history;
 
-    public UndoCommand(Stack<Command> history) {
-        this.history = history;
+
+    public UndoCommand() {
     }
     @Override
-    public void execute() {
+    public void execute(Stack<Command> history) {
         if (!history.isEmpty()) {
             Command cmd = history.pop();
             cmd.undo();
@@ -19,5 +19,7 @@ public class UndoCommand implements Command {
     }
 
     @Override
-    public void undo() {}
+    public void undo() {
+
+    }
 }

@@ -1,6 +1,8 @@
 package Command;
 import Receiver.Receiver;
 
+import java.util.Stack;
+
 public class ListCommand implements Command{
     private final Receiver receiver;
 
@@ -9,7 +11,7 @@ public class ListCommand implements Command{
     }
 
     @Override
-    public void execute() {
+    public void execute(Stack<Command> history) {
         receiver.list();
         System.out.println("List");
     }
