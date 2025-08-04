@@ -47,11 +47,5 @@ public class AddCommand implements Command , Undoable {
         receiver.list.remove(receiver.list.size() - 1);
     }
 
-    //Helper Method
-    private boolean isInvalidEmail(String email) {
-        Pattern pattern = Pattern.compile("^((?!.*[.-_]{2})[A-Za-z0-9][A-Za-z0-9._-]+[A-Za-z0-9])@((?!.*[.-]{2})[A-Za-z0-9][A-Za-z0-9.-]+[A-Za-z0-9])\\.[a-z]{2,3}$");
-        Matcher matcher = pattern.matcher(email);
 
-        return !matcher.find();
-    }
 }

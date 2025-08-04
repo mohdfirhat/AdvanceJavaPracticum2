@@ -20,6 +20,9 @@ public class UpdateCommand implements Command, Undoable {
             throw new  InvalidInputException("invalid index");
         }
         //add condition to check data3 email regex
+        if (isInvalidEmail(data3)) {
+            throw new  InvalidInputException("invalid email");
+        }
         this.receiver = receiver;
         this.index = index-1;
 
