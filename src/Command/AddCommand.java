@@ -1,12 +1,32 @@
 package Command;
 import Receiver.Receiver;
+import Exception.InvalidInputException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AddCommand implements Command , Undoable {
     private final Receiver receiver;
     private final String firstName, lastName, email;
 
-    public AddCommand(Receiver receiver, String data1, String data2, String data3) {
-        //add regex condition here for email
+    public AddCommand(Receiver receiver, String data1, String data2, String data3){
+        // Sanitize data
+        data1 = data1.trim();
+        data2 = data2.trim();
+        data3 = data3.trim();
+
+        // Validate data
+        try {
+            if (data1.isBlank() || data2.isBlank() || data3.isBlank()) {
+                throw new InvalidInputException("All three arguments are required to add.");
+            }
+            if (isInvalidEmail(data3)) {
+                throw new InvalidInputException("Invalid email address.");
+            }
+        } catch (InvalidInputException e) {
+            System.out.println(e.getMessage());
+        }
+
+        //set variables
         this.receiver = receiver;
         this.firstName = data1;
         this.lastName = data2;
@@ -15,14 +35,21 @@ public class AddCommand implements Command , Undoable {
 
     @Override
     public void execute() {
-        String fullEntry = firstName + "," + lastName + "," + email;
+        String fullEntry = String.format("%s %s %s", firstName, lastName,
+                email);
         //add() is item method in receiver to append new item to list
         receiver.add(fullEntry);
-        System.out.println("add");
+        System.out.println("Add");
     }
 
     @Override
     public void undo() {
         receiver.list.remove(receiver.list.size() - 1);
+    }
+
+    //Helper Method
+    private boolean isInvalidEmail(String email) {
+        Pattern pattern = Pattern.compile("^((?!.*[.-_]{2})[A-Za-z0-9][A-Za-z0-9._-]+[A-Za-z0-9])@((?!.*[.-]{2})[A-Za-z0-9][A-Za-z0-9.-]+[A-Za-z0-9])\\.[a-z]{2,3}$");
+        Matcher matcher = pattern.matcher(email);
     }
 }

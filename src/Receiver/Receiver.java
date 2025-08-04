@@ -60,7 +60,7 @@ public class Receiver {
     public boolean list(){
         for (int i = 0; i < list.size(); i++) {
             int count = i+1;
-            System.out.println(count+". "+list.get(i));
+            System.out.println(String.format("%02d. %s", count, list.get(i)));
         }
         return true;
     }
