@@ -2,10 +2,6 @@ package Command;
 import Receiver.Receiver;
 import Exception.InvalidInputException;
 
-import java.util.Stack;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class AddCommand implements Command {
     private final Receiver receiver;
     private final String firstName, lastName, email;

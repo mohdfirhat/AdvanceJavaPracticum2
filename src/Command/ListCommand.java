@@ -1,7 +1,5 @@
 package Command;
 import Receiver.Receiver;
-
-import java.util.Stack;
 import Exception.InvalidInputException;
 
 public class ListCommand implements Command{

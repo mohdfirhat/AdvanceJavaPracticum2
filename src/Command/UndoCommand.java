@@ -2,14 +2,14 @@ package Command;
 
 import java.util.EmptyStackException;
 import java.util.Stack;
-import Command.Command;
 import Exception.InvalidInputException;
+import Receiver.Receiver;
 
 public class UndoCommand implements Command {
     Stack<Command> history;
 
 
-    public UndoCommand(Stack<Command> history) {
+    public UndoCommand(Receiver receiver, Stack<Command> history) {
         this.history = history;
     }
 

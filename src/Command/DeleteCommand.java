@@ -1,9 +1,7 @@
 package Command;
 import Receiver.Receiver;
 import Exception.InvalidInputException;
-
 import java.util.List;
-import java.util.Stack;
 
 public class DeleteCommand implements Command {
     private final Receiver receiver;
