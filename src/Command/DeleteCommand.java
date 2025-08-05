@@ -5,7 +5,7 @@ import Exception.InvalidInputException;
 import java.util.List;
 import java.util.Stack;
 
-public class DeleteCommand implements Command , Undoable {
+public class DeleteCommand implements Command {
     private final Receiver receiver;
     private String input;
     private String deletedItem;

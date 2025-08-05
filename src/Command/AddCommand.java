@@ -6,7 +6,7 @@ import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class AddCommand implements Command , Undoable {
+public class AddCommand implements Command {
     private final Receiver receiver;
     private final String firstName, lastName, email;
 

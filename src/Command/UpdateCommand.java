@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Stack;
 
 
-public class UpdateCommand implements Command, Undoable {
+public class UpdateCommand implements Command {
     private Receiver receiver;
     private int index;
     private String originalEntry;
