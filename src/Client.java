@@ -26,6 +26,8 @@ public class Client {
         invoker.setCmdToExecute(new Command[] {add1, add3, add3, delete1, list1, update1, list1, undo1, undo1, list1});
         invoker.executeCommand(history);
 
+        reciever.storeToFile();
+
     }
 
 }

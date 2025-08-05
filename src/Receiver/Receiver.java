@@ -38,9 +38,8 @@ public class Receiver {
     public void storeToFile() {
         try (FileWriter fw = new FileWriter(FILE_PATH);
              BufferedWriter bw = new BufferedWriter(fw)) {
-            for (String line : list) {
-                bw.write(line);
-                bw.newLine();
+            for (int i=0; i<list.size(); i++) {
+                bw.write(String.format("%02d. %s\n",i+1,list.get(i)));
             }
         } catch (IOException io) {
             io.printStackTrace();
