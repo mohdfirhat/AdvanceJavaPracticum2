@@ -3,9 +3,10 @@ package Command;
 import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import Exception.InvalidInputException;
 
 public interface Command {
-    void execute();
+    void execute() throws InvalidInputException;
 
     void undo();
 

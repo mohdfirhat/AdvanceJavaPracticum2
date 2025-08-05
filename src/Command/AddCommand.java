@@ -22,19 +22,14 @@ public class AddCommand implements Command {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws InvalidInputException {
 
         // Validate data
-        try {
         if (firstName.isBlank() || lastName.isBlank() || email.isBlank()) {
             throw new InvalidInputException("All three arguments are required to add.");
         }
         if (isInvalidEmail(email)) {
             throw new InvalidInputException("Invalid email address.");
-        }
-        } catch (InvalidInputException e) {
-            System.out.println(e.getMessage());
-            return;
         }
 
         String fullEntry = String.format("%s %s %s", firstName, lastName,

@@ -1,5 +1,6 @@
 package Command;
 
+import java.util.EmptyStackException;
 import java.util.Stack;
 import Command.Command;
 import Exception.InvalidInputException;
@@ -13,19 +14,14 @@ public class UndoCommand implements Command {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws InvalidInputException {
         try {
-            if (history.isEmpty()) {
-                throw new InvalidInputException("Nothing to undo.");
-            }
-        } catch (InvalidInputException e) {
-            System.out.println(e.getMessage());
-            return;
+            Command cmd = history.pop();
+            System.out.println("Undo");
+            cmd.undo();
+        } catch (EmptyStackException e) {
+            throw new InvalidInputException("Nothing to undo.");
         }
-
-        System.out.println("Undo");
-        Command cmd = history.pop();
-        cmd.undo();
     }
     @Override
     public void undo() {

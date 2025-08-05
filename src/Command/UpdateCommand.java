@@ -21,7 +21,7 @@ public class UpdateCommand implements Command {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws InvalidInputException {
         try {
             this.index = Integer.parseInt(inputArr[0].trim()) - 1;
             if (this.index < 0 || this.index >= items.size()) {
@@ -33,23 +33,12 @@ public class UpdateCommand implements Command {
             }
 
             if (inputArr.length == 4) {
-                try{
-                    if (isInvalidEmail(inputArr[3])) {
-                        throw new InvalidInputException("Invalid email address.");
-                    }
-                }catch (InvalidInputException e){
-                    System.out.println(e.getMessage());
-                    return;
+                if (isInvalidEmail(inputArr[3])) {
+                    throw new InvalidInputException("Invalid email address.");
                 }
-
             }
-        } catch (InvalidInputException e) {
-            System.out.println(e.getMessage());
-            return;
         } catch (NumberFormatException e) {
-            //change error message
-            System.out.println(e.getMessage());
-            return;
+            throw new InvalidInputException("Invalid number format");
         }
 
 

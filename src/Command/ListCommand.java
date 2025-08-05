@@ -2,6 +2,7 @@ package Command;
 import Receiver.Receiver;
 
 import java.util.Stack;
+import Exception.InvalidInputException;
 
 public class ListCommand implements Command{
     private final Receiver receiver;
@@ -11,7 +12,7 @@ public class ListCommand implements Command{
     }
 
     @Override
-    public void execute() {
+    public void execute() throws InvalidInputException  {
         System.out.println("List");
         receiver.list();
     }

@@ -2,6 +2,7 @@ package Invoker;
 
 import java.util.Stack;
 import Command.Command;
+import Exception.InvalidInputException;
 
 public class Invoker {
     private Command[] cmdToExecute;
@@ -12,9 +13,13 @@ public class Invoker {
 
     public void executeCommand(Stack<Command> history){
         for (Command command : cmdToExecute) {
-            command.execute();
-            if (command.isUndoable()) {
-                history.push(command);
+            try {
+                command.execute();
+                if (command.isUndoable()) {
+                    history.push(command);
+                }
+            } catch (InvalidInputException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
