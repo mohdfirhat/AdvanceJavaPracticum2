@@ -21,10 +21,10 @@ public class Client {
         AddCommand add1 = new AddCommand(reciever,"Hello World Correct_Email@email.com");
         AddCommand add2 = new AddCommand(reciever,"Hello World2 _Wrong_Email@email.com");
         AddCommand add3 = new AddCommand(reciever,"Hello World3 Correct_Email@email.com");
-        /*UndoCommand undo1 = new UndoCommand();
+        UndoCommand undo1 = new UndoCommand();
         ListCommand list1 = new ListCommand(reciever);
         invoker.setCmdToExecute(new Command[] {add1, add2, add3,list1, undo1,list1});
-        invoker.executeCommand(history);*/
+        invoker.executeCommand(history);
 
     }
 

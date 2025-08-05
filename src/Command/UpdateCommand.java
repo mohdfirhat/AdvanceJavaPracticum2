@@ -33,9 +33,11 @@ public class UpdateCommand implements Command, Undoable {
             }
         } catch (InvalidInputException e) {
             System.out.println(e.getMessage());
+            return;
         } catch (NumberFormatException e) {
             //change error message
             System.out.println(e.getMessage());
+            return;
         }
         this.originalEntry = receiver.list.get(this.index);
         String[] parts = originalEntry.split(" ", 3);

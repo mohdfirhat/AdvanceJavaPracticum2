@@ -7,22 +7,33 @@ import java.util.Stack;
 
 public class DeleteCommand implements Command , Undoable {
     private final Receiver receiver;
-    private final int index;
+    private String input;
     private String deletedItem;
     private List<String> items;
 
-    public DeleteCommand(Receiver receiver, String index) {
+    public DeleteCommand(Receiver receiver, String input) {
         items = receiver.list;
-        if (Integer.parseInt(index.trim()) < 0 || Integer.parseInt(index.trim()) >= items.size()) {
-            throw new  InvalidInputException("invalid index");
-        }
         this.receiver = receiver;
-        this.index = Integer.parseInt(index.trim())-1;
+        this.input = input;
     }
 
     @Override
     public void execute(Stack<Command> history) {
-        deletedItem = items.get(index);
+        try{
+            if (Integer.parseInt(input.trim())-1 < 0 || Integer.parseInt(input.trim())-1 >= items.size()) {
+                throw new  InvalidInputException("invalid index");
+            }
+        } catch (InvalidInputException e) {
+            System.out.println(e.getMessage());
+            return;
+        } catch (NumberFormatException e) {
+            //change error message
+            System.out.println(e.getMessage());
+            return;
+        }
+
+        int index = Integer.parseInt(input.trim())-1;
+        this.deletedItem = items.get(index);
         receiver.delete(index);
         history.push(this);
         System.out.println("Delete");
@@ -30,6 +41,6 @@ public class DeleteCommand implements Command , Undoable {
 
     @Override
     public void undo() {
-        receiver.list.add(index, deletedItem);
+        receiver.list.add(Integer.parseInt(input.trim())-1, deletedItem);
     }
 }
