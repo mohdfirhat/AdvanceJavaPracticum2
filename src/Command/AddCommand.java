@@ -37,7 +37,7 @@ public class AddCommand implements Command {
 
     @Override
     public void undo() {
-        receiver.list.remove(receiver.list.size() - 1);
+        receiver.delete(receiver.list.size() - 1);
     }
 
     @Override

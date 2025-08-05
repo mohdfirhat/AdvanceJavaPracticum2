@@ -68,12 +68,18 @@ public class Receiver {
         return list;
     }
 
-    public boolean add(String entry){
+    public void add(String entry){
         list.add(entry);
         return true;
     }
 
-    public boolean delete(int index){
+    public void add(int index, String entry){
+        list.add(index,entry);
+        return true;
+    }
+
+
+    public void delete(int index){
         list.remove(index);
         return true;
 

@@ -6,6 +6,7 @@ import java.util.List;
 public class DeleteCommand implements Command {
     private final Receiver receiver;
     private String input;
+    private int index;
     private String deletedItem;
     private List<String> items;
 
@@ -18,27 +19,23 @@ public class DeleteCommand implements Command {
     @Override
     public void execute() throws InvalidInputException {
         try{
-            if (Integer.parseInt(input.trim())-1 < 0 || Integer.parseInt(input.trim())-1 >= items.size()) {
+            int index = Integer.parseInt(input.trim())-1;
+            if (index < 0 || index >= items.size()) {
                 throw new  InvalidInputException("invalid index");
             }
-        } catch (InvalidInputException e) {
-            System.out.println(e.getMessage());
-            return;
+            this.index = index;
+            this.deletedItem = items.get(index);
+            receiver.delete(index);
+            System.out.println("Delete");
         } catch (NumberFormatException e) {
             //change error message
-            System.out.println(e.getMessage());
-            return;
+            throw new InvalidInputException("Unable to parse index. Invalid number format");
         }
-
-        int index = Integer.parseInt(input.trim())-1;
-        this.deletedItem = items.get(index);
-        receiver.delete(index);
-        System.out.println("Delete");
     }
 
     @Override
     public void undo() {
-        receiver.list.add(Integer.parseInt(input.trim())-1, deletedItem);
+        receiver.add(this.index, deletedItem);
     }
 
     @Override
