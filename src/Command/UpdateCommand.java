@@ -39,6 +39,8 @@ public class UpdateCommand implements Command, Undoable {
             System.out.println(e.getMessage());
             return;
         }
+
+
         this.originalEntry = receiver.list.get(this.index);
         String[] parts = originalEntry.split(" ", 3);
         String origFirstName = parts[0];
@@ -46,19 +48,18 @@ public class UpdateCommand implements Command, Undoable {
         String origEmail = parts[2];
 
 
-
         if (inputArr.length == 4) {
             String newFirstName = titleCase(inputArr[1]);
             String newLastName = titleCase(inputArr[2]);
             String newEmail = titleCase(inputArr[3]);
-            String updatedEntry = newFirstName + " " + newLastName + " " + newEmail;
+            this.updatedEntry = newFirstName + " " + newLastName + " " + newEmail;
         } else if (inputArr.length == 3){
             String newFirstName = titleCase(inputArr[1]);
             String newLastName = titleCase(inputArr[2]);
-            String updatedEntry = newFirstName + " " + newLastName + " " + origEmail;
+            this.updatedEntry = newFirstName + " " + newLastName + " " + origEmail;
         }else if (inputArr.length == 2){
             String newFirstName = titleCase(inputArr[1]);
-            String updatedEntry = newFirstName + " " + origLastName + " " + origEmail;
+            this.updatedEntry = newFirstName + " " + origLastName + " " + origEmail;
         }
 
         receiver.update(index, updatedEntry);
