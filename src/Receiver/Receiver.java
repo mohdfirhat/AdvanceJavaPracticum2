@@ -70,31 +70,26 @@ public class Receiver {
 
     public void add(String entry){
         list.add(entry);
-        return true;
     }
 
     public void add(int index, String entry){
         list.add(index,entry);
-        return true;
     }
 
 
     public void delete(int index){
         list.remove(index);
-        return true;
 
     }
 
-    public boolean list(){
+    public void list(){
         for (int i = 0; i < list.size(); i++) {
             int count = i+1;
             System.out.println(String.format("%02d. %s", count, list.get(i)));
         }
-        return true;
     }
 
-    public boolean update(int index, String entry){
+    public void update(int index, String entry){
         list.set(index, entry);
-        return true;
     }
 }
