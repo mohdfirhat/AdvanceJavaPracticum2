@@ -23,6 +23,7 @@ public class Receiver {
 
             String line;
             while ((line = br.readLine()) != null) {
+                line = line.trim().replaceAll("^[0-9]+[.]\\s", "");
                 list.add(line);
             }
 
