@@ -14,30 +14,29 @@ public class AddCommand implements Command , Undoable {
         // Sanitize data
         input = input.trim();
         String [] inputArr = input.replaceAll("\\s+", " ").split(" ");
-
-        // Validate data
-//        try {
-            if (inputArr[0].isBlank() || inputArr[1].isBlank() || inputArr[2].isBlank()) {
-//                throw new InvalidInputException("All three arguments are required to add.");
-                System.out.println("All three arguments are required to add.");
-            }
-            if (isInvalidEmail(inputArr[2])) {
-//                throw new InvalidInputException("Invalid email address.");
-                System.out.println("Invalid email address.");
-            }
-
             //set variables
             this.receiver = receiver;
             this.firstName = titleCase(inputArr[0]);
             this.lastName = titleCase(inputArr[1]);
             this.email = inputArr[2];
-//        } catch (InvalidInputException e) {
-//            System.out.println(e.getMessage());
-//        }
     }
 
     @Override
     public void execute(Stack<Command> history) {
+
+        // Validate data
+        try {
+        if (firstName.isBlank() || lastName.isBlank() || email.isBlank()) {
+            throw new InvalidInputException("All three arguments are required to add.");
+        }
+        if (isInvalidEmail(email)) {
+            throw new InvalidInputException("Invalid email address.");
+        }
+        } catch (InvalidInputException e) {
+            System.out.println(e.getMessage());
+            return;
+        }
+
         String fullEntry = String.format("%s %s %s", firstName, lastName,
                 email);
         //add() is item method in receiver to append new item to list
