@@ -1,7 +1,13 @@
 package Receiver;
 
 import Command.Command;
-import java.io.*;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -15,33 +21,46 @@ public class Receiver {
     }
 
     public void readFile() {
+        Path filepath = Paths.get(FILE_PATH);
+        String line = "";
 
-        try (
-                FileReader fr = new FileReader(FILE_PATH);
-                BufferedReader br = new BufferedReader(fr)) {
+        if  (Files.notExists(filepath)) {
+            System.out.println("dataStore.txt does not exist");
+            return;
+        }
 
-            String line;
+        try ( BufferedReader br = Files.newBufferedReader(filepath) ) {
             while ((line = br.readLine()) != null) {
                 line = line.trim().replaceAll("^[0-9]+[.]\\s", "");
                 list.add(line);
             }
 
-        } catch (IOException fnf) {
-            //TODO: May need to handle IOException and FileNotFoundException individually
-            System.err.println("Unable to read file.File not found.");
-            fnf.printStackTrace();
+        } catch (IOException io) {
+            System.out.println("An error has occurred while reading file");
+        } catch (SecurityException se) {
+            System.out.println("You do not have read access to the file.");
         }
 
     }
 
     public void storeToFile() {
-        try (FileWriter fw = new FileWriter(FILE_PATH);
-             BufferedWriter bw = new BufferedWriter(fw)) {
+        Path filepath = Paths.get(FILE_PATH);
+        String line = "";
+
+        try (BufferedWriter buff_writer = Files.newBufferedWriter(filepath)) {
             for (int i=0; i<list.size(); i++) {
-                bw.write(String.format("%02d. %s\n",i+1,list.get(i)));
+                buff_writer.write(String.format("%02d. %s",i+1,list.get(i)));
+                buff_writer.newLine();
             }
         } catch (IOException io) {
-            io.printStackTrace();
+            System.out.println("An error has occurred while writing file");
+        } catch (SecurityException se) {
+            System.out.println("You do not have write access to the file");
+        } catch (IllegalArgumentException iae) {
+            System.out.println("You are unable to create, truncate or write " +
+                    "in this file");
+        } catch (UnsupportedOperationException uoe) {
+            System.out.println("Unsupported operation on the data store");
         }
     }
 
