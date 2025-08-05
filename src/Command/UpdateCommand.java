@@ -9,74 +9,56 @@ import java.util.Stack;
 public class UpdateCommand implements Command, Undoable {
     private Receiver receiver;
     private int index;
-    private String firstName;
-    private String lastName;
-    private String email;
     private String originalEntry;
+    private String[] inputArr;
     private List<String> items;
+    private String updatedEntry;
 
-    public UpdateCommand(Receiver receiver, int index, String data1) {
+    public UpdateCommand(Receiver receiver, String input) {
         items = receiver.list;
-        if (index < 0 || index >= items.size()) {
-            throw new  InvalidInputException("invalid index");
-        }
-
         this.receiver = receiver;
-        this.index = index-1;
-
-        this.originalEntry = receiver.list.get(index);
-        String[] parts = originalEntry.split(" ", 3);
-        String origLastName = parts[1];
-        String origEmail = parts[2];
-
-        this.firstName = data1;
-        this.lastName = origLastName;
-        this.email = origEmail;
-
-    }
-
-    public UpdateCommand(Receiver receiver, int index, String data1, String data2) {
-        items = receiver.list;
-        if (index < 0 || index >= items.size()) {
-            throw new  InvalidInputException("invalid index");
-        }
-
-        this.receiver = receiver;
-        this.index = index-1;
-
-        this.originalEntry = receiver.list.get(index);
-        String[] parts = originalEntry.split(" ", 3);
-        String origEmail = parts[2];
-
-        this.firstName = data1;
-        this.lastName = data2;
-        this.email = origEmail;
-
-    }
-
-    public UpdateCommand(Receiver receiver, int index, String data1, String data2, String data3) {
-        items = receiver.list;
-        if (index < 0 || index >= items.size()) {
-            throw new  InvalidInputException("invalid index");
-        }
-        //add condition to check data3 email regex
-        if (isInvalidEmail(data3)) {
-            throw new  InvalidInputException("invalid email");
-        }
-        this.receiver = receiver;
-        this.index = index-1;
-
-        this.originalEntry = receiver.list.get(index);
-
-        this.firstName = data1;
-        this.lastName = data2;
-        this.email = data3;
-
+        this.inputArr = input.trim().replaceAll("\\s+", " ").split(" ");
     }
 
     @Override
     public void execute(Stack<Command> history) {
-        String updatedEntry = firstName + " " + lastName + " " + email;
+        try {
+            this.index = Integer.parseInt(inputArr[0].trim()) - 1;
+            if (this.index < 0 || this.index >= items.size()) {
+                throw new InvalidInputException("invalid index");
+            }
+
+            if (inputArr.length > 4 || inputArr.length <= 1) {
+                throw new InvalidInputException("invalid number of inputs given");
+            }
+        } catch (InvalidInputException e) {
+            System.out.println(e.getMessage());
+        } catch (NumberFormatException e) {
+            //change error message
+            System.out.println(e.getMessage());
+        }
+        this.originalEntry = receiver.list.get(this.index);
+        String[] parts = originalEntry.split(" ", 3);
+        String origFirstName = parts[0];
+        String origLastName = parts[1];
+        String origEmail = parts[2];
+
+
+
+        if (inputArr.length == 4) {
+            String newFirstName = titleCase(inputArr[1]);
+            String newLastName = titleCase(inputArr[2]);
+            String newEmail = titleCase(inputArr[3]);
+            String updatedEntry = newFirstName + " " + newLastName + " " + newEmail;
+        } else if (inputArr.length == 3){
+            String newFirstName = titleCase(inputArr[1]);
+            String newLastName = titleCase(inputArr[2]);
+            String updatedEntry = newFirstName + " " + newLastName + " " + origEmail;
+        }else if (inputArr.length == 2){
+            String newFirstName = titleCase(inputArr[1]);
+            String updatedEntry = newFirstName + " " + origLastName + " " + origEmail;
+        }
+
         receiver.update(index, updatedEntry);
         history.push(this);
         System.out.println("Update");

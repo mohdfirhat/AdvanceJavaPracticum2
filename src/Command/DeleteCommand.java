@@ -11,13 +11,13 @@ public class DeleteCommand implements Command , Undoable {
     private String deletedItem;
     private List<String> items;
 
-    public DeleteCommand(Receiver receiver, int index) {
+    public DeleteCommand(Receiver receiver, String index) {
         items = receiver.list;
-        if (index < 0 || index >= items.size()) {
+        if (Integer.parseInt(index.trim()) < 0 || Integer.parseInt(index.trim()) >= items.size()) {
             throw new  InvalidInputException("invalid index");
         }
         this.receiver = receiver;
-        this.index = index-1;
+        this.index = Integer.parseInt(index.trim())-1;
     }
 
     @Override
