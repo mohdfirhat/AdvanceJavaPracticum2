@@ -5,13 +5,15 @@ import Command.Command;
 import Exception.InvalidInputException;
 
 public class UndoCommand implements Command {
+    Stack<Command> history;
 
 
-    public UndoCommand() {
+    public UndoCommand(Stack<Command> history) {
+        this.history = history;
     }
 
     @Override
-    public void execute(Stack<Command> history) {
+    public void execute() {
         try {
             if (history.isEmpty()) {
                 throw new InvalidInputException("Nothing to undo.");
@@ -28,5 +30,8 @@ public class UndoCommand implements Command {
     @Override
     public void undo() {
 
+    }
+    public boolean isUndoable() {
+        return false;
     }
 }

@@ -11,12 +11,15 @@ public class ListCommand implements Command{
     }
 
     @Override
-    public void execute(Stack<Command> history) {
+    public void execute() {
         System.out.println("List");
         receiver.list();
     }
 
     @Override
     public void undo() {
+    }
+    public boolean isUndoable() {
+        return false;
     }
 }

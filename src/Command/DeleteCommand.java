@@ -18,7 +18,7 @@ public class DeleteCommand implements Command {
     }
 
     @Override
-    public void execute(Stack<Command> history) {
+    public void execute() {
         try{
             if (Integer.parseInt(input.trim())-1 < 0 || Integer.parseInt(input.trim())-1 >= items.size()) {
                 throw new  InvalidInputException("invalid index");
@@ -35,12 +35,16 @@ public class DeleteCommand implements Command {
         int index = Integer.parseInt(input.trim())-1;
         this.deletedItem = items.get(index);
         receiver.delete(index);
-        history.push(this);
         System.out.println("Delete");
     }
 
     @Override
     public void undo() {
         receiver.list.add(Integer.parseInt(input.trim())-1, deletedItem);
+    }
+
+    @Override
+    public boolean isUndoable() {
+        return true;
     }
 }

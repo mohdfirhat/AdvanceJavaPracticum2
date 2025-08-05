@@ -22,7 +22,7 @@ public class AddCommand implements Command {
     }
 
     @Override
-    public void execute(Stack<Command> history) {
+    public void execute() {
 
         // Validate data
         try {
@@ -41,13 +41,17 @@ public class AddCommand implements Command {
                 email);
         //add() is item method in receiver to append new item to list
         receiver.add(fullEntry);
-        history.push(this);
         System.out.println("Add");
     }
 
     @Override
     public void undo() {
         receiver.list.remove(receiver.list.size() - 1);
+    }
+
+    @Override
+    public boolean isUndoable() {
+        return true;
     }
 
 

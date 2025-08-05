@@ -21,7 +21,7 @@ public class UpdateCommand implements Command {
     }
 
     @Override
-    public void execute(Stack<Command> history) {
+    public void execute() {
         try {
             this.index = Integer.parseInt(inputArr[0].trim()) - 1;
             if (this.index < 0 || this.index >= items.size()) {
@@ -75,12 +75,14 @@ public class UpdateCommand implements Command {
         }
 
         receiver.update(index, updatedEntry);
-        history.push(this);
         System.out.println("Update");
     }
 
     @Override
     public void undo() {
         receiver.update(index, originalEntry);
+    }
+    public boolean isUndoable() {
+        return true;
     }
 }

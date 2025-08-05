@@ -12,7 +12,10 @@ public class Invoker {
 
     public void executeCommand(Stack<Command> history){
         for (Command command : cmdToExecute) {
-            command.execute(history);
+            command.execute();
+            if (command.isUndoable()) {
+                history.push(command);
+            }
         }
     }
 }

@@ -5,9 +5,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public interface Command {
-    void execute(Stack<Command> history);
+    void execute();
 
     void undo();
+
+    boolean isUndoable();
 
     //Helper Method
     default boolean isInvalidEmail(String email) {
