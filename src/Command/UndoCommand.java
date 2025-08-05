@@ -1,7 +1,7 @@
 package Command;
 
 import java.util.Stack;
-import Command.Undoable;
+import Command.Command;
 
 public class UndoCommand implements Command {
 

@@ -10,28 +10,27 @@ public class AddCommand implements Command , Undoable {
     private final Receiver receiver;
     private final String firstName, lastName, email;
 
-    public AddCommand(Receiver receiver, String data1, String data2, String data3){
+    public AddCommand(Receiver receiver, String input){
         // Sanitize data
-        data1 = data1.trim();
-        data2 = data2.trim();
-        data3 = data3.trim();
+        input = input.trim();
+        String [] inputArr = input.replaceAll("\\s+", " ").split(" ");
 
         // Validate data
 //        try {
-            if (data1.isBlank() || data2.isBlank() || data3.isBlank()) {
+            if (inputArr[0].isBlank() || inputArr[1].isBlank() || inputArr[2].isBlank()) {
 //                throw new InvalidInputException("All three arguments are required to add.");
                 System.out.println("All three arguments are required to add.");
             }
-            if (isInvalidEmail(data3)) {
+            if (isInvalidEmail(inputArr[2])) {
 //                throw new InvalidInputException("Invalid email address.");
                 System.out.println("Invalid email address.");
             }
 
             //set variables
             this.receiver = receiver;
-            this.firstName = data1;
-            this.lastName = data2;
-            this.email = data3;
+            this.firstName = titleCase(inputArr[0]);
+            this.lastName = titleCase(inputArr[1]);
+            this.email = inputArr[2];
 //        } catch (InvalidInputException e) {
 //            System.out.println(e.getMessage());
 //        }
