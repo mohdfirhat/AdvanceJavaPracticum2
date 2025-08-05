@@ -23,7 +23,7 @@ public class Client {
         AddCommand add3 = new AddCommand(reciever,"Hello World3 Correct_Email@email.com");
         UndoCommand undo1 = new UndoCommand();
         ListCommand list1 = new ListCommand(reciever);
-        invoker.setCmdToExecute(new Command[] {add1, add2, add3,list1, undo1,list1});
+        invoker.setCmdToExecute(new Command[] {add1, add2, add3, add1, list1, undo1,undo1,list1});
         invoker.executeCommand(history);
 
     }

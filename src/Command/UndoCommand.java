@@ -13,11 +13,11 @@ public class UndoCommand implements Command {
     @Override
     public void execute(Stack<Command> history) {
         try {
-            if (!history.isEmpty()) {
+            if (history.isEmpty()) {
                 throw new InvalidInputException("Nothing to undo.");
             }
         } catch (InvalidInputException e) {
-            System.out.println("Nothing to undo.");
+            System.out.println(e.getMessage());
             return;
         }
 
