@@ -31,6 +31,18 @@ public class UpdateCommand implements Command, Undoable {
             if (inputArr.length > 4 || inputArr.length <= 1) {
                 throw new InvalidInputException("invalid number of inputs given");
             }
+
+            if (inputArr.length == 4) {
+                try{
+                    if (isInvalidEmail(inputArr[3])) {
+                        throw new InvalidInputException("Invalid email address.");
+                    }
+                }catch (InvalidInputException e){
+                    System.out.println(e.getMessage());
+                    return;
+                }
+
+            }
         } catch (InvalidInputException e) {
             System.out.println(e.getMessage());
             return;
