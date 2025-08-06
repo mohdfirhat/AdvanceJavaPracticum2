@@ -62,7 +62,7 @@ public class UpdateCommand implements Command {
         }
 
         receiver.update(index, updatedEntry);
-        System.out.println("Update");
+        System.out.println("update");
     }
 
     @Override

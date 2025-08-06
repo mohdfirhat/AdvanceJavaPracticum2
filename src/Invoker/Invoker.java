@@ -7,7 +7,7 @@ import Exception.InvalidInputException;
 public class Invoker {
     private Command[] cmdToExecute;
 
-    public void setCmdToExecute(Command[] cmdToExecute) {
+    public void setCommandsForExecution(Command[] cmdToExecute) {
         this.cmdToExecute = cmdToExecute;
     }
 

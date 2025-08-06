@@ -32,7 +32,7 @@ public class AddCommand implements Command {
                 email);
         //add() is item method in receiver to append new item to list
         receiver.add(fullEntry);
-        System.out.println("Add");
+        System.out.println("add");
     }
 
     @Override
