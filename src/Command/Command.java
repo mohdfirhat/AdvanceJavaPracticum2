@@ -13,13 +13,13 @@ public interface Command {
 
     //Helper Method
     default boolean isInvalidEmail(String email) {
-        Pattern pattern = Pattern.compile("^(?![._-])" +
-                "[a-zA-Z0-9]+(?:[._-](?![._-])[a-zA-Z0-9]+)*" +
-                "(?<![._-])@" +
-                "(?![._-])" +
-                "[a-zA-Z0-9]+(?:[._" +
-                "-](?![._-])[a-zA-Z0-9]+)*" +
-                "(?<![._-])" +
+        Pattern pattern = Pattern.compile("^(?![.-])" +
+                "[a-zA-Z0-9_]+(?:[.-](?![.-])[a-zA-Z0-9_]+)*" +
+                "(?<![.-])@" +
+                "(?![.-])" +
+                "[a-zA-Z0-9]+(?:[." +
+                "-](?![.-])[a-zA-Z0-9]+)*" +
+                "(?<![.-])" +
                 "\\.([a-z]{2,3})$");
         Matcher matcher = pattern.matcher(email);
         return !matcher.find();
