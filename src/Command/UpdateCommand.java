@@ -59,16 +59,16 @@ public class UpdateCommand implements Command {
 
 
         if (inputArr.length == 4) {
-            String newFirstName = titleCase(inputArr[1]);
-            String newLastName = titleCase(inputArr[2]);
-            String newEmail = titleCase(inputArr[3]);
+            String newFirstName = inputArr[1];
+            String newLastName = inputArr[2];
+            String newEmail = inputArr[3];
             this.updatedEntry = newFirstName + " " + newLastName + " " + newEmail;
         } else if (inputArr.length == 3){
-            String newFirstName = titleCase(inputArr[1]);
-            String newLastName = titleCase(inputArr[2]);
+            String newFirstName = inputArr[1];
+            String newLastName = inputArr[2];
             this.updatedEntry = newFirstName + " " + newLastName + " " + origEmail;
         }else if (inputArr.length == 2){
-            String newFirstName = titleCase(inputArr[1]);
+            String newFirstName = inputArr[1];
             this.updatedEntry = newFirstName + " " + origLastName + " " + origEmail;
         }
 

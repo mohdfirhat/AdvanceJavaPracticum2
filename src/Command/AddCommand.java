@@ -20,8 +20,8 @@ public class AddCommand implements Command {
             throw new InvalidInputException("All three arguments are required to use add.");
         }
 
-        String firstName = titleCase(inputArr[0]);
-        String lastName = titleCase(inputArr[1]);
+        String firstName = inputArr[0];
+        String lastName = inputArr[1];
         String email = inputArr[2];
 
         // Validate data

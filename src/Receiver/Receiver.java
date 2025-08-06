@@ -5,12 +5,14 @@ import Command.Command;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.nio.file.FileAlreadyExistsException;
+import Exception.InvalidInputException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Stack;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Receiver {
 
@@ -40,8 +42,13 @@ public class Receiver {
 
         try ( BufferedReader br = Files.newBufferedReader(filepath) ) {
             while ((line = br.readLine()) != null) {
-                line = line.trim().replaceAll("^[0-9]+[.]\\s", "");
-                list.add(line);
+                line = line.trim().replaceAll("^[0-9]+[.]\\s", "").replaceAll("\\s", " ");
+                try {
+                    checkInput(line);
+                    list.add(line);
+                } catch (InvalidInputException ie) {
+                    System.out.println(ie.getMessage());
+                }
             }
 
         } catch (IOException io) {
@@ -101,4 +108,47 @@ public class Receiver {
     public void update(int index, String entry){
         list.set(index, entry);
     }
+
+    private boolean checkInput(String line) throws InvalidInputException {
+        String[] inputArr = line.split(" ");
+        if (inputArr.length != 3) {
+            throw new InvalidInputException("Invalid number of input in line " +
+                    "at dataStore.txt");
+        }
+        if (!isTitleCase(inputArr[0])) {
+            throw new InvalidInputException("Data 1 is not title case");
+        }
+        if (!isTitleCase(inputArr[1])) {
+            throw new InvalidInputException("Data 2 is not title case");
+        }
+        if (isInvalidData3(inputArr[2])) {
+            throw new InvalidInputException("Data 3 is not a valid entry");
+        }
+        return true;
+    }
+
+    private boolean isTitleCase(String word) {
+        if (word == null || word.isEmpty()) {
+            return false;
+        }
+
+        return Character.isUpperCase(word.charAt(0)) &&
+                word.substring(1).equals(word.substring(1).toLowerCase());
+
+    }
+
+    private boolean isInvalidData3(String email) {
+        Pattern pattern = Pattern.compile("(^(?![.-])" +
+                "[a-zA-Z0-9_]+(?:[.-](?![.-])[a-zA-Z0-9_]+)*" +
+                "(?<![.-])@" +
+                "(?![.-])" +
+                "[a-zA-Z0-9]+(?:[." +
+                "-](?![.-])[a-zA-Z0-9]+)*" +
+                "(?<![.-])" +
+                "\\.([a-z]{2,3})$|" +
+                "^[A-Z][A-Za-z0-9_]+)");
+        Matcher matcher = pattern.matcher(email);
+        return !matcher.find();
+    }
+
 }
