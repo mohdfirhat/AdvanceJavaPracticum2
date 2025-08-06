@@ -44,8 +44,7 @@ public class Receiver {
             while ((line = br.readLine()) != null) {
                 line = line.trim().replaceAll("^[0-9]+[.]\\s", "").replaceAll("\\s", " ");
                 try {
-                    checkInput(line);
-                    list.add(line);
+                    list.add(checkAndFormatInput(line));
                 } catch (InvalidInputException ie) {
                     System.out.println(ie.getMessage());
                 }
@@ -109,22 +108,16 @@ public class Receiver {
         list.set(index, entry);
     }
 
-    private boolean checkInput(String line) throws InvalidInputException {
+    private String checkAndFormatInput(String line) throws InvalidInputException {
         String[] inputArr = line.split(" ");
         if (inputArr.length != 3) {
             throw new InvalidInputException("Invalid number of input in line " +
                     "at dataStore.txt");
         }
-        if (!isTitleCase(inputArr[0])) {
-            throw new InvalidInputException("Data 1 is not title case");
-        }
-        if (!isTitleCase(inputArr[1])) {
-            throw new InvalidInputException("Data 2 is not title case");
-        }
         if (isInvalidData3(inputArr[2])) {
             throw new InvalidInputException("Data 3 is not a valid entry");
         }
-        return true;
+        return String.format("%s %s %s", titleCase(inputArr[0]), titleCase(inputArr[1]),inputArr[2]);
     }
 
     private boolean isTitleCase(String word) {
@@ -149,6 +142,14 @@ public class Receiver {
                 "^[A-Z][A-Za-z0-9_]+)");
         Matcher matcher = pattern.matcher(email);
         return !matcher.find();
+    }
+
+    private String titleCase(String data) {
+        data = data.toLowerCase();
+        String firstWord = data.substring(0, 1).toUpperCase();
+        String restOfWord = data.substring(1);
+        return firstWord + restOfWord;
+
     }
 
 }
