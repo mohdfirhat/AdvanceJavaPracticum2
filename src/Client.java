@@ -16,14 +16,17 @@ public class Client {
         System.out.println(reciever.getList());
         Invoker invoker = new Invoker();
 
-        AddCommand add1 = new AddCommand(reciever,"Hello World Correct_Email@email.com");
-        AddCommand add2 = new AddCommand(reciever,"Hello World2 _Wrong_Email@email.com");
-        AddCommand add3 = new AddCommand(reciever,"Hello World3 Correct_Email@email.com");
-        DeleteCommand delete1 = new DeleteCommand(reciever,"1");
-        UpdateCommand update1 = new UpdateCommand(reciever,"2 Bye Hi");
+        AddCommand add1 = new AddCommand(reciever,"First_name Last_name Email");
+        AddCommand add2 = new AddCommand(reciever,"John Doe simple@example.com");
+        AddCommand add3 = new AddCommand(reciever,"Hanna Moon tetter.tots@potatoesarelife.com");
+        AddCommand add4 = new AddCommand(reciever,"Ah Boon green-tea@teaforlife.com");
+        UpdateCommand update1 = new UpdateCommand(reciever,"3 Adam");
+        UpdateCommand update2 = new UpdateCommand(reciever,"1 blue bell ice-cream@alaskaFields.org");
         UndoCommand undo1 = new UndoCommand(reciever, history);
         ListCommand list1 = new ListCommand(reciever);
-        invoker.setCmdToExecute(new Command[] {add1, add3, add3, delete1, list1, update1, list1, undo1, undo1, list1});
+        DeleteCommand delete1 = new DeleteCommand(reciever, "1");
+        invoker.setCmdToExecute(new Command[]{add1, add2, add3, add4, list1, update1, list1, update2, list1, delete1, list1, undo1, list1});
+        //invoker.setCmdToExecute(new Command[] {add1, add3, add3, delete1, list1, update1, list1, undo1, undo1, list1});
         invoker.executeCommand(history);
 
         reciever.storeToFile();
