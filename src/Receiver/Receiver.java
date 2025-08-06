@@ -5,6 +5,7 @@ import Command.Command;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -30,6 +31,10 @@ public class Receiver {
             } catch (IOException io) {
                 System.out.println("Unable to create dataStore.txt file");
                 return;
+            } catch (SecurityException se) {
+                System.out.println("You do not have access to create dataStore.txt file");
+            } catch (UnsupportedOperationException uoe) {
+                System.out.println("Error creating dataStore.txt file");
             }
         }
 
