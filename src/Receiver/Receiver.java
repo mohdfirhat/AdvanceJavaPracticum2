@@ -18,7 +18,6 @@ public class Receiver {
 
     private static final String FILE_PATH = "./src/dataStore.txt";
     public final ArrayList<String> list = new ArrayList<>();
-    public Stack<Command> history = new Stack<>();
 
     public Receiver() {
     }
@@ -118,16 +117,6 @@ public class Receiver {
             throw new InvalidInputException("Data 3 is not a valid entry");
         }
         return String.format("%s %s %s", titleCase(inputArr[0]), titleCase(inputArr[1]),inputArr[2]);
-    }
-
-    private boolean isTitleCase(String word) {
-        if (word == null || word.isEmpty()) {
-            return false;
-        }
-
-        return Character.isUpperCase(word.charAt(0)) &&
-                word.substring(1).equals(word.substring(1).toLowerCase());
-
     }
 
     private boolean isInvalidData3(String email) {
