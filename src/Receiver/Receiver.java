@@ -25,8 +25,12 @@ public class Receiver {
         String line = "";
 
         if  (Files.notExists(filepath)) {
-            System.out.println("dataStore.txt does not exist");
-            return;
+            try {
+                Files.createFile(filepath);
+            } catch (IOException io) {
+                System.out.println("Unable to create dataStore.txt file");
+                return;
+            }
         }
 
         try ( BufferedReader br = Files.newBufferedReader(filepath) ) {
