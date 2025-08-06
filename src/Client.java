@@ -13,7 +13,6 @@ public class Client {
 
         Receiver receiver = new Receiver();
         receiver.readFile();
-        System.out.println(receiver.getList());
         Invoker invoker = new Invoker();
 
         AddCommand add1 = new AddCommand(receiver,"First_name Last_name Email");
