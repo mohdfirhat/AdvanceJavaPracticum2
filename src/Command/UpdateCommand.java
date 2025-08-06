@@ -43,9 +43,11 @@ public class UpdateCommand implements Command {
             throw new InvalidInputException("First Name must be in title case" +
                     ".");
         }
-        if (!isTitleCase(inputArr[2])) {
-            throw new InvalidInputException("Last Name must be in title case" +
-                    ".");
+        if (inputArr.length >= 3) {
+            if (!isTitleCase(inputArr[2])) {
+                throw new InvalidInputException("Last Name must be in title case" +
+                        ".");
+            }
         }
 
 
