@@ -11,6 +11,9 @@ public class ListCommand implements Command{
 
     @Override
     public void execute() throws InvalidInputException  {
+        if (receiver.list.size() == 0) {
+            throw new InvalidInputException("Invalid command as list is empty.");
+        }
         System.out.println("List");
         receiver.list();
     }

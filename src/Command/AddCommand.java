@@ -4,21 +4,25 @@ import Exception.InvalidInputException;
 
 public class AddCommand implements Command {
     private final Receiver receiver;
-    private final String firstName, lastName, email;
+    private final String[] inputArr;
 
     public AddCommand(Receiver receiver, String input){
         // Sanitize data
         input = input.trim();
-        String [] inputArr = input.replaceAll("\\s+", " ").split(" ");
-            //set variables
+        this.inputArr = input.replaceAll("\\s+", " ").split(" ");
             this.receiver = receiver;
-            this.firstName = titleCase(inputArr[0]);
-            this.lastName = titleCase(inputArr[1]);
-            this.email = inputArr[2];
+
     }
 
     @Override
     public void execute() throws InvalidInputException {
+        if (inputArr.length != 3) {
+            throw new InvalidInputException("All three arguments are required to use add.");
+        }
+
+        String firstName = titleCase(inputArr[0]);
+        String lastName = titleCase(inputArr[1]);
+        String email = inputArr[2];
 
         // Validate data
         if (firstName.isBlank() || lastName.isBlank() || email.isBlank()) {
