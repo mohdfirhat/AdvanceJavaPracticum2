@@ -37,7 +37,7 @@ public class AddCommand implements Command {
                     ".");
         }
 
-        if (isInvalidEmail(email)) {
+        if (isInvalidData3(email)) {
             throw new InvalidInputException("Invalid email address.");
         }
 

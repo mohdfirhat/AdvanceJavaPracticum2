@@ -12,7 +12,7 @@ public interface Command {
     boolean isUndoable();
 
     //Helper Method
-    default boolean isInvalidEmail(String email) {
+    default boolean isInvalidData3(String email) {
         Pattern pattern = Pattern.compile("(^(?![.-])" +
                 "[a-zA-Z0-9_]+(?:[.-](?![.-])[a-zA-Z0-9_]+)*" +
                 "(?<![.-])@" +
@@ -21,7 +21,7 @@ public interface Command {
                 "-](?![.-])[a-zA-Z0-9]+)*" +
                 "(?<![.-])" +
                 "\\.([a-z]{2,3})$|" +
-                "[A-Z][A-Za-z0-9_]+)");
+                "^[A-Z][A-Za-z0-9_]+)");
         Matcher matcher = pattern.matcher(email);
         return !matcher.find();
     }

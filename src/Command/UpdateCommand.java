@@ -31,7 +31,7 @@ public class UpdateCommand implements Command {
             }
 
             if (inputArr.length == 4) {
-                if (isInvalidEmail(inputArr[3])) {
+                if (isInvalidData3(inputArr[3])) {
                     throw new InvalidInputException("Invalid email address.");
                 }
             }
