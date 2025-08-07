@@ -1,7 +1,5 @@
 package Receiver;
 
-import Command.Command;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -10,7 +8,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -24,7 +21,7 @@ public class Receiver {
 
     public void readFile() {
         Path filepath = Paths.get(FILE_PATH);
-        String line = "";
+        String line;
 
         if  (Files.notExists(filepath)) {
             try {
@@ -42,11 +39,7 @@ public class Receiver {
         try ( BufferedReader br = Files.newBufferedReader(filepath) ) {
             while ((line = br.readLine()) != null) {
                 line = line.trim().replaceAll("^[0-9]+[.]\\s", "").replaceAll("\\s", " ");
-                try {
-                    list.add(checkAndFormatInput(line));
-                } catch (InvalidInputException ie) {
-                    System.out.println(ie.getMessage());
-                }
+                list.add(line);
             }
 
         } catch (IOException io) {
@@ -107,23 +100,23 @@ public class Receiver {
         list.set(index, entry);
     }
 
-    private String checkAndFormatInput(String line) throws InvalidInputException {
-        String[] inputArr = line.split(" ");
-        if (inputArr.length != 3) {
-            throw new InvalidInputException("Invalid number of input in line " +
-                    "at dataStore.txt");
-        }
-        if (isInvalidData3(inputArr[2])) {
-            throw new InvalidInputException("Data 3 is not a valid entry");
-        }
-        String email;
-        if (inputArr[2].contains("@")){
-            email = inputArr[2];
-        }else{
-            email = titleCase(inputArr[2]);
-        }
-        return String.format("%s %s %s", titleCase(inputArr[0]), titleCase(inputArr[1]),email);
-    }
+//    private String formatInput(String line) {
+//        String[] inputArr = line.split(" ");
+//        if (inputArr.length != 3) {
+//            throw new InvalidInputException("Invalid number of input in line " +
+//                    "at dataStore.txt");
+//        }
+//        if (isInvalidData3(inputArr[2])) {
+//            throw new InvalidInputException("Data 3 is not a valid entry");
+//        }
+//        String email;
+//        if (inputArr[2].contains("@")){
+//            email = inputArr[2];
+//        }else{
+//            email = titleCase(inputArr[2]);
+//        }
+//        return String.format("%s %s %s", titleCase(inputArr[0]), titleCase(inputArr[1]),email);
+//    }
 
     private boolean isInvalidData3(String email) {
         Pattern pattern = Pattern.compile("(^(?![.-])" +

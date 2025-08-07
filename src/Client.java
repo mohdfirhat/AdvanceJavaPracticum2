@@ -24,8 +24,14 @@ public class Client {
         UndoCommand undo1 = new UndoCommand(receiver, history);
         ListCommand list1 = new ListCommand(receiver);
         DeleteCommand delete1 = new DeleteCommand(receiver, "1");
-        invoker.setCommandsForExecution(new Command[]{add1, add2, add3, add4, list1, update1, list1, update2, list1, delete1, list1, undo1, list1});
-        //invoker.setCmdToExecute(new Command[] {add1, add3, add3, delete1, list1, update1, list1, undo1, undo1, list1});
+
+        AddCommand adda = new AddCommand(receiver, "51323 dOe.2f notemail");
+        UpdateCommand updatea = new UpdateCommand(receiver, "1 43143 n4ame invalid..email@x.com");
+        UpdateCommand updateb = new UpdateCommand(receiver, "1 5321 n4ame valid.email@x.com");
+        //invoker.setCommandsForExecution(new Command[]{add1, add2, add3, add4, list1, update1, list1, update2, list1, delete1, list1, undo1, list1});
+        invoker.setCommandsForExecution(new Command[] {adda, list1, updatea, list1});
+
+
         invoker.executeCommand(history);
 
         receiver.storeToFile();
