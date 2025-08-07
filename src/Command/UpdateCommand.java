@@ -3,21 +3,51 @@ import Receiver.Receiver;
 import Exception.InvalidInputException;
 import java.util.List;
 
-
+/**
+ * A child class for command of update type.
+ * Update Command requires mandatory user input of index, and at least
+ * one of (firstName, lastName, email).
+ */
 public class UpdateCommand implements Command {
+    /**
+     * variable for receiver object to be passed into this command
+     */
     private Receiver receiver;
+    /**
+     * variable for index at which line is updated
+     */
     private int index;
+    /**
+     * variable for the original input which is replaced
+     */
     private String originalEntry;
+    /**
+     * variable user input stored in an array
+     */
     private String[] inputArr;
+    /**
+     * variable for items list at the point update command is called
+     */
     private List<String> items;
+    /**
+     * variable for the updatedEntry object
+     */
     private String updatedEntry;
-
+    /**
+     * Constructor for the update class
+     *
+     * @param receiver Receiver object
+     * @param input user input
+     */
     public UpdateCommand(Receiver receiver, String input) {
         items = receiver.list;
         this.receiver = receiver;
         this.inputArr = input.trim().replaceAll("\\s+", " ").split(" ");
     }
-
+    /**
+     * The execute method is overriden to read the update the
+     * required line.
+     */
     @Override
     public void execute() throws InvalidInputException {
         try {
@@ -73,6 +103,10 @@ public class UpdateCommand implements Command {
     public void undo() {
         receiver.update(index, originalEntry);
     }
+    /**
+     * Undo command is undoable.
+     */
+    @Override
     public boolean isUndoable() {
         return true;
     }
