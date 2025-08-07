@@ -21,7 +21,7 @@ public interface Command {
                 "-](?![.-])[a-zA-Z0-9]+)*" +
                 "(?<![.-])" +
                 "\\.([a-z]{2,3})$|" +
-                "^[A-Z][A-Za-z0-9_]+)");
+                "^[A-Za-z0-9_]+)");
         Matcher matcher = pattern.matcher(email);
         return !matcher.find();
     }

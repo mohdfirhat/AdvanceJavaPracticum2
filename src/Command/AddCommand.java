@@ -19,10 +19,14 @@ public class AddCommand implements Command {
         if (inputArr.length != 3) {
             throw new InvalidInputException("All three arguments are required to use add.");
         }
+        String email;
 
         String firstName = titleCase(inputArr[0]);
         String lastName = titleCase(inputArr[1]);
-        String email = inputArr[2];
+        if (inputArr[2].contains("@")){
+            email = inputArr[2];
+        }else{
+            email = titleCase(inputArr[2]);}
 
         // Validate data
         if (firstName.isBlank() || lastName.isBlank() || email.isBlank()) {

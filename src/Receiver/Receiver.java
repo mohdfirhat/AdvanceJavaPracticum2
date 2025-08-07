@@ -116,7 +116,13 @@ public class Receiver {
         if (isInvalidData3(inputArr[2])) {
             throw new InvalidInputException("Data 3 is not a valid entry");
         }
-        return String.format("%s %s %s", titleCase(inputArr[0]), titleCase(inputArr[1]),inputArr[2]);
+        String email;
+        if (inputArr[2].contains("@")){
+            email = inputArr[2];
+        }else{
+            email = titleCase(inputArr[2]);
+        }
+        return String.format("%s %s %s", titleCase(inputArr[0]), titleCase(inputArr[1]),email);
     }
 
     private boolean isInvalidData3(String email) {
@@ -128,7 +134,7 @@ public class Receiver {
                 "-](?![.-])[a-zA-Z0-9]+)*" +
                 "(?<![.-])" +
                 "\\.([a-z]{2,3})$|" +
-                "^[A-Z][A-Za-z0-9_]+)");
+                "^[A-Za-z0-9_]+)");
         Matcher matcher = pattern.matcher(email);
         return !matcher.find();
     }

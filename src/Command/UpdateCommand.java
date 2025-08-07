@@ -39,7 +39,7 @@ public class UpdateCommand implements Command {
             throw new InvalidInputException("Invalid number format");
         }
 
-        if (!isTitleCase(inputArr[1])) {
+        /*if (!isTitleCase(inputArr[1])) {
             throw new InvalidInputException("First Name must be in title case" +
                     ".");
         }
@@ -48,7 +48,7 @@ public class UpdateCommand implements Command {
                 throw new InvalidInputException("Last Name must be in title case" +
                         ".");
             }
-        }
+        }*/
 
 
         this.originalEntry = receiver.list.get(this.index);
@@ -56,12 +56,16 @@ public class UpdateCommand implements Command {
         String origFirstName = parts[0];
         String origLastName = parts[1];
         String origEmail = parts[2];
-
+        String newEmail;
 
         if (inputArr.length == 4) {
             String newFirstName = titleCase(inputArr[1]);
             String newLastName = titleCase(inputArr[2]);
-            String newEmail = inputArr[3];
+
+            if (inputArr[3].contains("@")){
+                newEmail = inputArr[3];
+            }else{
+                newEmail = titleCase(inputArr[3]);}
             this.updatedEntry = newFirstName + " " + newLastName + " " + newEmail;
         } else if (inputArr.length == 3){
             String newFirstName = titleCase(inputArr[1]);
