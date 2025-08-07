@@ -67,6 +67,7 @@ public class DeleteCommand implements Command {
     }
     /**
      * Delete command is undoable.
+     * @return true
      */
     @Override
     public boolean isUndoable() {

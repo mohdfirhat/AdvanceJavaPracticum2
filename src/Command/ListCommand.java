@@ -34,7 +34,8 @@ public class ListCommand implements Command{
     public void undo() {
     }
     /**
-     * Undo command is not undoable.
+     * List command is not undoable.
+     * @return false
      */
     @Override
     public boolean isUndoable() {

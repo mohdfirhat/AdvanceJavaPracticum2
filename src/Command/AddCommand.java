@@ -71,7 +71,8 @@ public class AddCommand implements Command {
     }
 
     /**
-     * Add is undoable.
+     * Add command is undoable.
+     * @return true
      */
     @Override
     public boolean isUndoable() {

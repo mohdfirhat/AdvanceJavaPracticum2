@@ -104,7 +104,8 @@ public class UpdateCommand implements Command {
         receiver.update(index, originalEntry);
     }
     /**
-     * Undo command is undoable.
+     * Update command is undoable.
+     * @return true
      */
     @Override
     public boolean isUndoable() {

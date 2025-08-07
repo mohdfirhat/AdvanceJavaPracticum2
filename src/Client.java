@@ -7,10 +7,18 @@ import java.util.*;
 
 /**
  * The driver class to invoke the commands.
+ *
  */
 public class Client {
     /**
+     * Constructs a new Client object.
+     */
+    public Client() {
+        // Constructor body (if any initialization is needed)
+    }
+    /**
      * The main method creates a receiver and invoker object to pass into commands
+     * @param args argument for driver class
      */
     public static void main(String[] args) {
         /**
@@ -26,6 +34,7 @@ public class Client {
          */
         Invoker invoker = new Invoker();
 
+
         AddCommand add1 = new AddCommand(receiver,"First_name Last_name Email");
         AddCommand add2 = new AddCommand(receiver,"John Doe simple@example.com");
         AddCommand add3 = new AddCommand(receiver,"Hanna Moon tetter.tots@potatoesarelife.com");
@@ -34,7 +43,7 @@ public class Client {
         UpdateCommand update2 = new UpdateCommand(receiver,"1 blue bell ice-cream@alaskaFields.org");
         UndoCommand undo1 = new UndoCommand(receiver, history);
         ListCommand list1 = new ListCommand(receiver);
-        DeleteCommand delete1 = new DeleteCommand(receiver, "");
+        DeleteCommand delete1 = new DeleteCommand(receiver, "1 312");
 
         AddCommand adda = new AddCommand(receiver, "51323 dOe.2f notemail");
         UpdateCommand updatea = new UpdateCommand(receiver, "1 43143 n4ame invalid..email@x.com");

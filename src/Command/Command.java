@@ -22,8 +22,10 @@ public interface Command {
      * setup procedures of the undo command if applicable.
      */
     void undo();
+
     /**
      * Abstract method to flag if a command is undoable.
+     * @return true if command is unundoable
      */
     boolean isUndoable();
 
@@ -32,6 +34,7 @@ public interface Command {
      * the left side checks the email, while the right
      * side checks whether the inputs are legal (contains only alphanumerics or _).
      * @param email email string the check the regex
+     * @return true if pattern does not match
      */
     default boolean isInvalidData3(String email) {
         Pattern pattern = Pattern.compile("(^(?![.-])" +
@@ -49,6 +52,7 @@ public interface Command {
     /**
      * Helper method to parse a string into titleCase.
      * @param data user input to check titlecase
+     * @return the titlecased word
      */
     default String titleCase(String data) {
         data = data.toLowerCase();
