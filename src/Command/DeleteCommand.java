@@ -14,7 +14,7 @@ public class DeleteCommand implements Command {
     /**
      * variable for input
      */
-    private String input;
+    private String[] inputArr;
     /**
      * variable for saved for index
      */
@@ -36,7 +36,7 @@ public class DeleteCommand implements Command {
     public DeleteCommand(Receiver receiver, String input) {
         items = receiver.list;
         this.receiver = receiver;
-        this.input = input;
+        this.inputArr = input.trim().replaceAll("\\s+", " ").split(" ");
     }
     /**
      * The execute method is overriden to delete the user input
@@ -45,7 +45,10 @@ public class DeleteCommand implements Command {
     @Override
     public void execute() throws InvalidInputException {
         try{
-            int index = Integer.parseInt(input.trim())-1;
+            if (inputArr.length != 1){
+                throw new InvalidInputException("Invalid number of arguments");
+            }
+            int index = Integer.parseInt(inputArr[0].trim())-1;
             if (index < 0 || index >= items.size()) {
                 throw new  InvalidInputException("invalid index");
             }
