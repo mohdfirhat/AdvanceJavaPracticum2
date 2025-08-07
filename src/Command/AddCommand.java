@@ -32,20 +32,12 @@ public class AddCommand implements Command {
         if (firstName.isBlank() || lastName.isBlank() || email.isBlank()) {
             throw new InvalidInputException("All three arguments are required to add.");
         }
-        if (!isTitleCase(firstName)) {
-            throw new InvalidInputException("First Name must be in title case" +
-                    ".");
-        }
-        if (!isTitleCase(lastName)) {
-            throw new InvalidInputException("Last Name must be in title case" +
-                    ".");
-        }
 
         if (isInvalidData3(email)) {
             throw new InvalidInputException("Invalid email address.");
         }
 
-        String fullEntry = String.format("%s %s %s", firstName, lastName,
+        String fullEntry = String.format("%s %s %s", titleCase(firstName), titleCase(lastName),
                 email);
         //add() is item method in receiver to append new item to list
         receiver.add(fullEntry);

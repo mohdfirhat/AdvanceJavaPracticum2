@@ -39,17 +39,6 @@ public class UpdateCommand implements Command {
             throw new InvalidInputException("Invalid number format");
         }
 
-        /*if (!isTitleCase(inputArr[1])) {
-            throw new InvalidInputException("First Name must be in title case" +
-                    ".");
-        }
-        if (inputArr.length >= 3) {
-            if (!isTitleCase(inputArr[2])) {
-                throw new InvalidInputException("Last Name must be in title case" +
-                        ".");
-            }
-        }*/
-
 
         this.originalEntry = receiver.list.get(this.index);
         String[] parts = originalEntry.split(" ", 3);
