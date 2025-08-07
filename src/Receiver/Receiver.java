@@ -13,28 +13,34 @@ import java.util.regex.Pattern;
 import Command.Command;
 
 /**
- * Reciever Class is able to read and store data into the {@code dataStore.txt}.
+ * Receiver Class is able to read and store data into the {@code dataStore.txt}.
  * It also has a {@code list} which temporarily stores the data for manipulation
  * Receiver Class executes the methods that the {@link Command} calls for and
  * manipulate the {@code list}.
  */
 public class Receiver {
 
-    /** static variable to store the dataStore file path*/
+    /**
+     * static variable to store the dataStore file path
+     */
     private static final String FILE_PATH = "./src/dataStore.txt";
-    /** variable to temporarily hold the dataStore input for manipulation*/
+    /**
+     * variable to temporarily hold the dataStore input for manipulation
+     */
     public final ArrayList<String> list = new ArrayList<>();
 
-    /** Constructor for {@link Receiver}. runs the {@code readFile} method
-     * when created*/
+    /**
+     * Constructor for {@link Receiver}. runs the {@code readFile} method when
+     * created
+     */
     public Receiver() {
         this.readFile();
     }
 
     /**
-     * reads the dataStore.txt and add the formatted results into the {@code
-     * list}. It creates the dataStore file if it doesn't exist(at the {@code
-     * FILE_PATH}).
+     * reads the dataStore.txt and add the formatted results into the
+     * {@code list}. It creates the dataStore file if it doesn't exist(at the
+     * {@code FILE_PATH}).
      */
     public void readFile() {
         Path filepath = Paths.get(FILE_PATH);
@@ -91,13 +97,17 @@ public class Receiver {
         }
     }
 
-    /** getter for the list */
+    /**
+     * getter for the list
+     * @return ArrayList of user entries
+     */
     public ArrayList<String> getList() {
         return list;
     }
 
     /**
      * Adds the successful entry to the end of the list.
+     *
      * @param entry input provided by user
      */
     public void add(String entry) {
@@ -106,6 +116,7 @@ public class Receiver {
 
     /**
      * Adds the successful entry to the list at the index provided.
+     *
      * @param index index to add entry
      * @param entry input provided by user
      */
@@ -115,6 +126,7 @@ public class Receiver {
 
     /**
      * Remove the entry from the list from the list
+     *
      * @param index to remove entry
      */
     public void delete(int index) {
@@ -133,6 +145,7 @@ public class Receiver {
 
     /**
      * updates the list based on the index listed on the list displayed
+     *
      * @param index to update entry
      * @param entry input provided by user
      */

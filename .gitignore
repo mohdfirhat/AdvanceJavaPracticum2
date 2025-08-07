@@ -4,6 +4,7 @@ out/
 !**/src/test/**/out/
 .idea
 dataStore.txt
+doc
 
 ### Eclipse ###
 .apt_generated
