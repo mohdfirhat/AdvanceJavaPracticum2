@@ -26,13 +26,13 @@ public interface Command {
         return !matcher.find();
     }
 
-//    default String titleCase(String data) {
-//        data = data.toLowerCase();
-//        String firstWord = data.substring(0, 1).toUpperCase();
-//        String restOfWord = data.substring(1);
-//        return firstWord + restOfWord;
-//
-//    }
+    default String titleCase(String data) {
+        data = data.toLowerCase();
+        String firstWord = data.substring(0, 1).toUpperCase();
+        String restOfWord = data.substring(1);
+        return firstWord + restOfWord;
+
+    }
 
     default boolean isTitleCase(String word) {
         if (word == null || word.isEmpty()) {
