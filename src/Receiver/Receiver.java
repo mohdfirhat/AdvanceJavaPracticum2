@@ -17,6 +17,7 @@ public class Receiver {
     public final ArrayList<String> list = new ArrayList<>();
 
     public Receiver() {
+        this.readFile();
     }
 
     public void readFile() {
@@ -86,7 +87,6 @@ public class Receiver {
 
     public void delete(int index){
         list.remove(index);
-
     }
 
     public void list(){
