@@ -45,7 +45,7 @@ public class DeleteCommand implements Command {
     @Override
     public void execute() throws InvalidInputException {
         try{
-            int index = Integer.parseInt(input.trim())-1;
+            int index = Integer.parseInt(input)-1;
             if (index < 0 || index >= items.size()) {
                 throw new  InvalidInputException("invalid index");
             }
