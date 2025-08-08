@@ -48,7 +48,7 @@ public class AddCommand implements Command {
             email = titleCase(inputArr[2]);}
 
         // Validate data
-        if (firstName.isBlank() || lastName.isBlank() || email.isBlank()) {
+        if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty()) {
             throw new InvalidInputException("All three arguments are required to add.");
         }
 
